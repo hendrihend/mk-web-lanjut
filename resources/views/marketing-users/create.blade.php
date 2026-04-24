@@ -1,0 +1,127 @@
+@extends('layouts.app_adminlte')
+
+@section('title', 'Tambah Marketing User')
+
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h1 class="mb-4">Tambah Marketing User Baru</h1>
+
+            @if ($errors->any())
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Validasi Gagal!</strong>
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
+
+            <div class="card">
+                <div class="card-body">
+                    <form action="{{ route('marketing-users.store') }}" method="POST">
+                        @csrf
+
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nama <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                id="name" name="name" value="{{ old('name') }}" required>
+                            @error('name')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                id="email" name="email" value="{{ old('email') }}" required>
+                            @error('email')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Nomor Telepon</label>
+                            <input type="text" class="form-control @error('phone') is-invalid @enderror"
+                                id="phone" name="phone" value="{{ old('phone') }}">
+                            @error('phone')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="position" class="form-label">Posisi</label>
+                                    <input type="text" class="form-control @error('position') is-invalid @enderror"
+                                        id="position" name="position" value="{{ old('position') }}">
+                                    @error('position')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="department" class="form-label">Department</label>
+                                    <input type="text" class="form-control @error('department') is-invalid @enderror"
+                                        id="department" name="department" value="{{ old('department') }}">
+                                    @error('department')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="territory" class="form-label">Territory</label>
+                            <input type="text" class="form-control @error('territory') is-invalid @enderror"
+                                id="territory" name="territory" value="{{ old('territory') }}">
+                            @error('territory')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="status" class="form-label">Status <span class="text-danger">*</span></label>
+                            <select class="form-select @error('status') is-invalid @enderror"
+                                id="status" name="status" required>
+                                <option value="">-- Pilih Status --</option>
+                                <option value="active" {{ old('status') == 'active' ? 'selected' : '' }}>
+                                    Aktif
+                                </option>
+                                <option value="inactive" {{ old('status') == 'inactive' ? 'selected' : '' }}>
+                                    Tidak Aktif
+                                </option>
+                            </select>
+                            @error('status')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="notes" class="form-label">Catatan</label>
+                            <textarea class="form-control @error('notes') is-invalid @enderror"
+                                id="notes" name="notes" rows="4">{{ old('notes') }}</textarea>
+                            @error('notes')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-check-circle"></i> Simpan
+                            </button>
+                            <a href="{{ route('marketing-users.index') }}" class="btn btn-secondary">
+                                <i class="bi bi-x-circle"></i> Batal
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
