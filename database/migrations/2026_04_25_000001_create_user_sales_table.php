@@ -1,0 +1,42 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('user_sales', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');
+            $table->string('sales_name');
+            $table->string('email')->unique();
+            $table->string('phone')->nullable();
+            $table->string('region');
+            $table->decimal('quota', 15, 2)->default(0);
+            $table->decimal('achievement', 15, 2)->default(0);
+            $table->decimal('commission_rate', 5, 2)->default(5.00);
+            $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->text('notes')->nullable();
+            $table->timestamps();
+
+            // Indexes
+            $table->index('region');
+            $table->index('status');
+            $table->index('email');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('user_sales');
+    }
+};

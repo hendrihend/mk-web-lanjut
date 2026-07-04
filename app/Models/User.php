@@ -46,4 +46,20 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Relasi ke Transactions
+     */
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
+    /**
+     * Relasi ke UserSales
+     */
+    public function userSales()
+    {
+        return $this->hasOne(UserSales::class);
+    }
 }

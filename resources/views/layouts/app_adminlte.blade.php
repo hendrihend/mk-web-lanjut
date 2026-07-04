@@ -9,19 +9,63 @@
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 
-    @vite(['resources/css/app.css'])
+    @vite(['resources/css/admin.css'])
 
     <style>
+        :root {
+            --app-bg: #f5f7fb;
+            --app-border: #e5e7eb;
+        }
+
+        body {
+            background-color: var(--app-bg);
+        }
+
         .content-wrapper {
-            background-color: #f4f6f9;
+            background-color: var(--app-bg);
         }
 
         .brand-link {
             font-weight: 600;
+            letter-spacing: 0.02em;
         }
 
         .sidebar-dark-primary .brand-link {
             background-color: #343a40;
+        }
+
+        .main-sidebar {
+            box-shadow: 0 0 1.5rem rgba(0,0,0,.08);
+        }
+
+        .main-header {
+            border-bottom: 1px solid var(--app-border);
+            box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,.025);
+        }
+
+        .main-footer {
+            border-top: 1px solid var(--app-border);
+            background-color: #fff;
+        }
+
+        .content-header {
+            padding-bottom: 0.75rem;
+        }
+
+        .nav-sidebar .nav-link {
+            border-radius: 0.75rem;
+            margin: 0.15rem 0.4rem;
+        }
+
+        .nav-sidebar .nav-link:hover,
+        .nav-sidebar .nav-link.active {
+            background-color: rgba(255,255,255,.12);
+        }
+
+        @media (max-width: 768px) {
+            .content-header h1 {
+                font-size: 1.3rem;
+            }
         }
     </style>
 </head>
@@ -77,14 +121,15 @@
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+                        <!-- Dashboard -->
                         <li class="nav-item">
                             <a href="{{ route('dashboard') }}" class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>Dashboard</p>
                             </a>
                         </li>
+
+                        <!-- Marketing Users -->
                         <li class="nav-item">
                             <a href="{{ route('marketing-users.index') }}" class="nav-link {{ request()->routeIs('marketing-users.*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-users"></i>
@@ -94,13 +139,43 @@
                                 </p>
                             </a>
                         </li>
+
+                        <!-- User Sales -->
+                        <li class="nav-item">
+                            <a href="{{ route('user-sales.index') }}" class="nav-link {{ request()->routeIs('user-sales.*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-chart-line"></i>
+                                <p>User Sales</p>
+                            </a>
+                        </li>
+
+                        <!-- Transactions -->
                         <li class="nav-item">
                             <a href="{{ route('transactions.index') }}" class="nav-link {{ request()->routeIs('transactions.*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-exchange-alt"></i>
-                                <p>
-                                    Transactions
-                                </p>
+                                <p>Transactions</p>
                             </a>
+                        </li>
+
+                        <!-- Divider -->
+                        <li class="nav-header">SETTINGS</li>
+
+                        <!-- Profile -->
+                        <li class="nav-item">
+                            <a href="{{ route('profile.edit') }}" class="nav-link {{ request()->routeIs('profile.*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>Profile</p>
+                            </a>
+                        </li>
+
+                        <!-- Logout -->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form-sidebar').submit();">
+                                <i class="nav-icon fas fa-sign-out-alt"></i>
+                                <p>Logout</p>
+                            </a>
+                            <form id="logout-form-sidebar" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
                         </li>
                     </ul>
                 </nav>
@@ -157,7 +232,7 @@
     <!-- ./wrapper -->
 
     <!-- REQUIRED SCRIPTS -->
-    @vite(['resources/js/app.js'])
+    @vite(['resources/js/admin.js'])
 
     @yield('scripts')
 </body>

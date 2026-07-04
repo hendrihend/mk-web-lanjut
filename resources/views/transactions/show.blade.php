@@ -10,10 +10,10 @@
                 <h1>Detail Transaksi</h1>
                 <div>
                     <a href="{{ route('transactions.edit', $transaction) }}" class="btn btn-warning">
-                        <i class="bi bi-pencil"></i> Edit
+                        <i class="fas fa-edit"></i> Edit
                     </a>
                     <a href="{{ route('transactions.index') }}" class="btn btn-secondary">
-                        <i class="bi bi-arrow-left"></i> Kembali
+                        <i class="fas fa-arrow-left"></i> Kembali
                     </a>
                 </div>
             </div>
@@ -107,17 +107,17 @@
 
                     <div class="d-flex gap-2">
                         <a href="{{ route('transactions.edit', $transaction) }}" class="btn btn-warning">
-                            <i class="bi bi-pencil"></i> Edit Transaksi
+                            <i class="fas fa-edit"></i> Edit Transaksi
                         </a>
                         <form action="{{ route('transactions.destroy', $transaction) }}" method="POST" style="display:inline;" onsubmit="return confirm('Yakin hapus transaksi ini?')">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">
-                                <i class="bi bi-trash"></i> Hapus Transaksi
+                                <i class="fas fa-trash"></i> Hapus Transaksi
                             </button>
                         </form>
                         <a href="{{ route('transactions.index') }}" class="btn btn-secondary">
-                            <i class="bi bi-arrow-left"></i> Kembali ke Daftar
+                            <i class="fas fa-arrow-left"></i> Kembali ke Daftar
                         </a>
                     </div>
                 </div>

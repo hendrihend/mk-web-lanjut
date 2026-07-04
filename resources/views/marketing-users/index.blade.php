@@ -10,7 +10,7 @@
         </div>
         <div class="col-md-6 text-end">
             <a href="{{ route('marketing-users.create') }}" class="btn btn-primary">
-                <i class="bi bi-plus"></i> Tambah Marketing User
+                <i class="fas fa-plus"></i> Tambah Marketing User
             </a>
         </div>
     </div>
@@ -51,7 +51,7 @@
                 </div>
                 <div class="col-md-3">
                     <button type="submit" class="btn btn-secondary w-100">
-                        <i class="bi bi-search"></i> Filter
+                        <i class="fas fa-search"></i> Filter
                     </button>
                 </div>
             </form>
@@ -94,17 +94,17 @@
                     <td>
                         <div class="btn-group btn-group-sm" role="group">
                             <a href="{{ route('marketing-users.show', $user) }}" class="btn btn-info" title="Lihat">
-                                <i class="bi bi-eye"></i>
+                                <i class="fas fa-eye"></i>
                             </a>
                             <a href="{{ route('marketing-users.edit', $user) }}" class="btn btn-warning" title="Edit">
-                                <i class="bi bi-pencil"></i>
+                                <i class="fas fa-edit"></i>
                             </a>
                             <form action="{{ route('marketing-users.destroy', $user) }}" method="POST" class="d-inline"
                                 onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm" title="Hapus">
-                                    <i class="bi bi-trash"></i>
+                                    <i class="fas fa-trash"></i>
                                 </button>
                             </form>
                         </div>

@@ -10,10 +10,10 @@
                 <h1>Detail Marketing User</h1>
                 <div>
                     <a href="{{ route('marketing-users.edit', $marketingUser) }}" class="btn btn-warning btn-sm">
-                        <i class="bi bi-pencil"></i> Edit
+                        <i class="fas fa-edit"></i> Edit
                     </a>
                     <a href="{{ route('marketing-users.index') }}" class="btn btn-secondary btn-sm">
-                        <i class="bi bi-arrow-left"></i> Kembali
+                        <i class="fas fa-arrow-left"></i> Kembali
                     </a>
                 </div>
             </div>
@@ -101,18 +101,18 @@
 
                     <div class="d-flex gap-2">
                         <a href="{{ route('marketing-users.edit', $marketingUser) }}" class="btn btn-primary">
-                            <i class="bi bi-pencil"></i> Edit Data
+                            <i class="fas fa-edit"></i> Edit Data
                         </a>
                         <form action="{{ route('marketing-users.destroy', $marketingUser) }}" method="POST" class="d-inline"
                             onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">
-                                <i class="bi bi-trash"></i> Hapus
+                                <i class="fas fa-trash"></i> Hapus
                             </button>
                         </form>
                         <a href="{{ route('marketing-users.index') }}" class="btn btn-secondary">
-                            <i class="bi bi-arrow-left"></i> Kembali
+                            <i class="fas fa-arrow-left"></i> Kembali
                         </a>
                     </div>
                 </div>

@@ -113,10 +113,10 @@
 
                         <div class="d-flex gap-2">
                             <button type="submit" class="btn btn-primary">
-                                <i class="bi bi-check-circle"></i> Update
+                                <i class="fas fa-check"></i> Update
                             </button>
                             <a href="{{ route('marketing-users.show', $marketingUser) }}" class="btn btn-secondary">
-                                <i class="bi bi-x-circle"></i> Batal
+                                <i class="fas fa-times"></i> Batal
                             </a>
                         </div>
                     </form>

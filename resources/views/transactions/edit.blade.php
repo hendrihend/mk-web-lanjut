@@ -125,10 +125,10 @@
 
                         <div class="d-flex gap-2">
                             <button type="submit" class="btn btn-primary">
-                                <i class="bi bi-check"></i> Update Transaksi
+                                <i class="fas fa-check"></i> Update Transaksi
                             </button>
                             <a href="{{ route('transactions.show', $transaction) }}" class="btn btn-secondary">
-                                <i class="bi bi-arrow-left"></i> Batal
+                                <i class="fas fa-arrow-left"></i> Batal
                             </a>
                         </div>
                     </form>

@@ -1,0 +1,7 @@
+import './bootstrap';
+
+import $ from 'jquery';
+window.$ = window.jQuery = $;
+
+import 'bootstrap';
+import 'admin-lte';

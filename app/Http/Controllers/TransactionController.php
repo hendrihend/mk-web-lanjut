@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\TransactionExcelExport;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -13,13 +14,32 @@ class TransactionController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Transaction::with('user');
+        $query = $this->buildQuery($request);
+        $transactions = $query->latest()->paginate(15);
+        $users = User::all();
+
+        return view('transactions.index', compact('transactions', 'users'));
+    }
+
+    public function export(Request $request)
+    {
+        $query = $this->buildQuery($request);
+        $transactions = $query->latest()->get();
+
+        return (new TransactionExcelExport($transactions))->download('transactions-' . now()->format('Ymd_His') . '.xlsx');
+    }
+
+    protected function buildQuery(Request $request)
+    {
+        $query = Transaction::query()->with('user');
 
         // Filter berdasarkan search
         if ($request->filled('search')) {
             $search = $request->get('search');
-            $query->where('transaction_code', 'like', "%{$search}%")
-                ->orWhere('description', 'like', "%{$search}%");
+            $query->where(function ($subQuery) use ($search) {
+                $subQuery->where('transaction_code', 'like', "%{$search}%")
+                    ->orWhere('description', 'like', "%{$search}%");
+            });
         }
 
         // Filter berdasarkan status
@@ -49,10 +69,7 @@ class TransactionController extends Controller
             $query->whereBetween('created_at', [$startDate, $endDate]);
         }
 
-        $transactions = $query->latest()->paginate(15);
-        $users = User::all();
-
-        return view('transactions.index', compact('transactions', 'users'));
+        return $query;
     }
 
     /**
